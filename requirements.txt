@@ -4,3 +4,4 @@ numpy==1.26.4
 plotly==5.20.0
 networkx==3.3
 streamlit-option-menu==0.3.6
+streamlit-option-menu
