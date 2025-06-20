@@ -1,5 +1,3 @@
-# THIS IS THE CORRECTED CODE - COPY AND PASTE THIS ENTIRE BLOCK
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -21,6 +19,11 @@ st.set_page_config(
 def local_css():
     st.markdown("""
     <style>
+    /* --- HIDE THE SIDEBAR COLLAPSE BUTTON --- */
+    [data-testid="stSidebarCollapseButton"] {
+        display: none;
+    }
+
     /* --- FONT, COLOR & GLOBAL STYLES --- */
     html, body, [class*="st-"], .stApp {
         font-family: 'Times New Roman', Times, serif !important;
