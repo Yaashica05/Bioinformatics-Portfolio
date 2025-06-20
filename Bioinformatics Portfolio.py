@@ -176,7 +176,7 @@ def page_protein_predictor():
         pathogen = st.text_input("Enter Pathogen Name", "SARS-CoV-2")
     with col2:
         protein = st.selectbox("Select Target Protein (mocked)", ["Spike Glycoprotein", "Nsp12", "Mpro", "Nsp5"])
-    if st.button("Predict Interaction & Find Compounds »"):
+    if st.button("Predict Interaction & Find Compounds ▶"):
         with st.spinner(f"Analyzing {protein} from {pathogen}..."):
             affinity_score, compounds_df = mock_predict_interaction(pathogen, protein)
         st.success(f"Prediction Complete for **{protein}**!")
@@ -203,7 +203,7 @@ def page_dilemma_simulator():
         st.write(dilemma["text"])
         choice = st.radio("Your Decision:", dilemma["options"], key=f"choice_{key}")
         justification = st.text_area("Justify your reasoning:", key=f"justify_{key}")
-        if st.button("Submit Decision »"):
+        if st.button("Submit Decision ▶"):
             framework, score = mock_analyze_ethics(justification)
             st.session_state.scores.append({"Dilemma": key, "Framework": framework, "Score": score})
             st.session_state.dilemma_idx += 1
@@ -216,7 +216,7 @@ def page_dilemma_simulator():
         st.dataframe(scores_df)
         fig = px.line(scores_df, x='Dilemma', y='Score', color='Framework', markers=True, title="Your Ethical Framework Trend", range_y=[0,1])
         st.plotly_chart(fig, use_container_width=True)
-        if st.button("Restart Simulator »"):
+        if st.button("Restart Simulator ▶"):
             st.session_state.dilemma_idx = 0; st.session_state.scores = []; st.rerun()
 
 def page_epigenetic_tracker():
@@ -227,7 +227,7 @@ def page_epigenetic_tracker():
         generations = st.slider("Number of Generations", 5, 100, 20)
     with col2:
         stress_factor = st.slider("Environmental Stress Factor (%)", 0, 100, 10)
-    if st.button("Run Simulation »"):
+    if st.button("Run Simulation ▶"):
         with st.spinner("Simulating epigenetic drift..."):
             methylation_history = mock_epigenetic_simulation(generations, stress_factor)
         st.success("Simulation complete!")
@@ -240,7 +240,7 @@ def page_ai_assistant():
     st.title("AI-Powered Research Assistant")
     st.info("Scrapes PubMed abstracts for a topic and builds a real-time co-citation network.")
     disease = st.text_input("Enter a Disease or Topic", "Tularemia")
-    if st.button("Analyze Literature »"):
+    if st.button("Analyze Literature ▶"):
         with st.spinner(f"Mining PubMed for '{disease}'..."):
             papers, summary = mock_fetch_pubmed(disease)
         st.success("Analysis Complete!")
@@ -292,7 +292,7 @@ def page_repurposing_game():
             selected_drug = st.selectbox("Choose the best drug for this target:", data["drugs"])
         with col2:
             st.metric("Your Score", st.session_state.score)
-        if st.button("Submit Answer »"):
+        if st.button("Submit Answer ▶"):
             if selected_drug == data["correct"]:
                 st.success(f"Correct! {selected_drug} is a known inhibitor."); st.session_state.score += 10
             else:
@@ -300,7 +300,7 @@ def page_repurposing_game():
             st.session_state.target_idx += 1; time.sleep(1.5); st.rerun()
     else:
         st.balloons(); st.success(f"Game Over! Your final score is: {st.session_state.score}")
-        if st.button("Play Again? »"):
+        if st.button("Play Again? ▶"):
             st.session_state.score = 0; st.session_state.target_idx = 0; st.rerun()
 
 def page_lab_notebook():
@@ -308,7 +308,7 @@ def page_lab_notebook():
     st.info("Takes unstructured lab notes and automatically structures them into searchable entries.")
     default_notes = "Date: 2023-10-26\nExp_045: Ran PCR on samples A-D. Used taq poly. 35 cycles.\nResults look good. Quantified samples using NanoDrop.\nSample A: 50.2 ng/ul\n\nDate: 2023-10-27\nExp_046: Cell culture work. Incubated plate #3 for 48h at 37C."
     notes = st.text_area("Paste your unstructured lab notes below:", default_notes, height=250)
-    if st.button("Structure My Notes »"):
+    if st.button("Structure My Notes ▶"):
         if not notes.strip(): st.warning("Please enter some notes to structure.")
         else:
             with st.spinner("Applying NLP to parse your notes..."):
@@ -329,7 +329,7 @@ def page_risk_estimator():
         cleanliness = st.slider("Lab Cleanliness (1=Poor, 10=Sterile)", 1, 10, 7)
     with col2:
         experience = st.slider("Operator Experience (1=Novice, 10=Expert)", 1, 10, 8)
-    if st.button("Calculate Contamination Risk »"):
+    if st.button("Calculate Contamination Risk ▶"):
         base_risk = {"Sample Collection": 0.15, "DNA/RNA Extraction": 0.10, "PCR Setup (Pre-Amp)": 0.20, "PCR Amplification": 0.05, "Post-PCR Handling": 0.25, "Sequencing Prep": 0.15}
         cleanliness_modifier = 1 + (10 - cleanliness) * 0.1
         experience_modifier = 1 + (10 - experience) * 0.05
